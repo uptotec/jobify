@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import styles from "./header.module.scss";
 import jobifyLogo from "../../assets/jobify logo.svg";
+import { useNavigate } from "react-router-dom";
 
 export interface HeaderProps {
     className?: string;
@@ -12,6 +13,7 @@ export interface HeaderProps {
  */
 export const Header = ({ className }: HeaderProps) => {
     const currentPath = window.location.pathname;
+    const navigate = useNavigate();
     return (
         <div className={classNames(styles.root, className)}>
             <div
@@ -27,8 +29,8 @@ export const Header = ({ className }: HeaderProps) => {
                     data-aos-duration="1000"
                 />
                 <div className="flex gap-8">
-                    <a
-                        href="/"
+                    <button
+                        onClick={() => navigate("/")}
                         className={`${
                             currentPath === "/" && "text-primary underline"
                         } underline-offset-4 hover:text-primary`}
@@ -37,9 +39,9 @@ export const Header = ({ className }: HeaderProps) => {
                         data-aos-delay="200"
                     >
                         Home
-                    </a>
+                    </button>
                     <a
-                        href="/jobs"
+                        onClick={() => navigate("/jobs")}
                         className={`${
                             currentPath === "/jobs" && "text-primary underline"
                         } underline-offset-4 hover:text-primary`}
@@ -50,7 +52,7 @@ export const Header = ({ className }: HeaderProps) => {
                         Find a job
                     </a>
                     <a
-                        href="/post-job"
+                        onClick={() => navigate("/post-job")}
                         className={`${
                             currentPath === "/post-job" &&
                             "text-primary underline"
@@ -63,16 +65,19 @@ export const Header = ({ className }: HeaderProps) => {
                     </a>
                 </div>
                 <div className={"flex items-center gap-4"}>
-                    <a
-                        href="/"
-                        className={"transition-all hover:text-primary"}
+                    <button
+                        onClick={() => navigate("/login")}
+                        className={`${
+                            currentPath === "/login" && "text-primary underline"
+                        } underline-offset-4 hover:text-primary`}
                         data-aos="fade-down"
                         data-aos-duration="1000"
                         data-aos-delay="600"
                     >
                         Log in
-                    </a>
+                    </button>
                     <button
+                        onClick={() => navigate("/signup")}
                         data-aos="fade-down"
                         data-aos-duration="1000"
                         data-aos-delay="700"
