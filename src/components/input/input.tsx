@@ -4,6 +4,7 @@ import { RiSearchLine } from "react-icons/ri";
 import { RiUserLocationLine } from "react-icons/ri";
 import { RiMailLine } from "react-icons/ri";
 import { FiLock } from "react-icons/fi";
+import { RiUserLine } from "react-icons/ri";
 
 export interface InputProps {
     className?: string;
@@ -21,6 +22,7 @@ export const Input = ({ className, icon, placeholder }: InputProps) => {
         location: <RiUserLocationLine size={24} color="#717171" />,
         mail: <RiMailLine size={24} color="#717171" />,
         password: <FiLock size={24} color="#717171" />,
+        user: <RiUserLine size={24} color="#717171" />,
     };
 
     return (
