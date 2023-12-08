@@ -4,6 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FindAJobPage } from "./pages/find-a-job-page/find-a-job-page";
 import { JobPage } from "./pages/job-page/job-page";
+import { LoginPage } from "./pages/login-page/login-page";
 
 const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     {
         path: "/job",
         Component: JobPage,
+    },
+    {
+        path: "/login",
+        Component: LoginPage,
     },
 ]);
 

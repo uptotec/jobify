@@ -3,6 +3,7 @@ import styles from "./input.module.scss";
 import { RiSearchLine } from "react-icons/ri";
 import { RiUserLocationLine } from "react-icons/ri";
 import { RiMailLine } from "react-icons/ri";
+import { FiLock } from "react-icons/fi";
 
 export interface InputProps {
     className?: string;
@@ -19,6 +20,7 @@ export const Input = ({ className, icon, placeholder }: InputProps) => {
         search: <RiSearchLine size={24} color="#717171" />,
         location: <RiUserLocationLine size={24} color="#717171" />,
         mail: <RiMailLine size={24} color="#717171" />,
+        password: <FiLock size={24} color="#717171" />,
     };
 
     return (
@@ -28,6 +30,7 @@ export const Input = ({ className, icon, placeholder }: InputProps) => {
                 <input
                     className="h-8 p-2 transition-all focus:border-b-2 focus:border-primary focus:outline-none"
                     placeholder={placeholder}
+                    type={icon === 'mail' ? "email" : icon === 'password'? "password" : "text"}
                 />
             </div>
             <div />

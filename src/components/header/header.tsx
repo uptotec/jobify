@@ -21,13 +21,15 @@ export const Header = ({ className }: HeaderProps) => {
                     "flex w-screen items-center justify-between px-24 py-10"
                 }
             >
-                <img
-                    src={jobifyLogo}
-                    alt=""
-                    className="w-20"
-                    data-aos="fade-down"
-                    data-aos-duration="1000"
-                />
+                <div onClick={() => navigate("/")} className="cursor-pointer">
+                    <img
+                        src={jobifyLogo}
+                        alt=""
+                        className="w-20"
+                        data-aos="fade-down"
+                        data-aos-duration="1000"
+                    />
+                </div>
                 <div className="flex gap-8">
                     <button
                         onClick={() => navigate("/")}
