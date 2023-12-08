@@ -6,6 +6,8 @@ import { FindAJobPage } from "./pages/find-a-job-page/find-a-job-page";
 import { JobPage } from "./pages/job-page/job-page";
 import { LoginPage } from "./pages/login-page/login-page";
 import { SignUpPage } from "./pages/sign-up-page/sign-up-page";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +35,12 @@ const router = createBrowserRouter([
 function App() {
     AOS.init();
     window.addEventListener("load", AOS.refresh);
-    return <RouterProvider router={router} />;
+    return (
+        <>
+            <RouterProvider router={router} />
+            <ToastContainer />
+        </>
+    );
 }
 
 export default App;

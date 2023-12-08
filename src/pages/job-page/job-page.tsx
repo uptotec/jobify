@@ -8,6 +8,8 @@ import { Footer } from "../../components/footer/footer";
 import { AboutCompany } from "../../components/about-company/about-company";
 import { useParams } from "react-router-dom";
 import { fakeJobs } from "../../jobs";
+import { useState } from "react";
+import { ApplyModal } from "../../components/apply-modal/apply-modal";
 
 export interface JobPageProps {
     className?: string;
@@ -22,12 +24,23 @@ export const JobPage = ({ className }: JobPageProps) => {
     const { id } = useParams();
     const job = fakeJobs.find((job) => job.id === id);
 
+    const [isOpened, setIsOpened] = useState(false);
+
     return (
         <div className="w-screen">
+            <ApplyModal
+                title={job!.jobTitle}
+                companyName={job!.company.name}
+                isOpened={isOpened}
+                onClose={() => setIsOpened(false)}
+            />
             <Header />
             <div className="flex gap-8 px-24 py-8">
                 <div className="flex w-3/4 flex-col gap-8">
-                    <JobTitleSection job={job!} />
+                    <JobTitleSection
+                        job={job!}
+                        openModal={() => setIsOpened(true)}
+                    />
                     <JobDetailsSection job={job!} />
                     <JobDescriptionAndRequirements
                         type="description"

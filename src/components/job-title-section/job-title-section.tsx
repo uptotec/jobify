@@ -8,6 +8,7 @@ import { job } from "../../jobType";
 export interface JobTitleSectionProps {
     className?: string;
     job: job;
+    openModal: () => void;
 }
 
 /**
@@ -15,7 +16,11 @@ export interface JobTitleSectionProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 
-export const JobTitleSection = ({ className, job }: JobTitleSectionProps) => {
+export const JobTitleSection = ({
+    className,
+    job,
+    openModal,
+}: JobTitleSectionProps) => {
     return (
         <div
             className="flex w-full flex-col gap-4 rounded-xl border-2 border-lightBorder px-8 py-4"
@@ -37,7 +42,7 @@ export const JobTitleSection = ({ className, job }: JobTitleSectionProps) => {
             <p className="text-lightText">{job.postDate}</p>
             <p className="text-lightText">{job.openPositions} open positions</p>
             <div className="flex gap-4">
-                <Button text="Apply for this job" />
+                <Button text="Apply for this job" onClick={openModal} />
                 <button className="flex w-10 items-center justify-center rounded-md border-2 border-lightBorder">
                     <RiShareFill style={{ color: "#ffffff" }} size={24} />
                 </button>
