@@ -108,7 +108,7 @@ export const SignupForm = ({ className }: SignupFormProps) => {
                 className="w-full"
             >
                 <Button
-                    text="Sign in"
+                    text="Sign up"
                     className="w-full"
                     onClick={handleSubmit}
                 />
