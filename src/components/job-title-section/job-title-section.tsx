@@ -39,7 +39,7 @@ export const JobTitleSection = ({
                 {job.company.name}
                 <span className="text-lightText">- {job.details.Location}</span>
             </p>
-            <p className="text-lightText">{job.postDate}</p>
+            <p className="text-lightText">{new Date(job.postDate).toDateString()}</p>
             <p className="text-lightText">{job.openPositions} open positions</p>
             <div className="flex gap-4">
                 <Button text="Apply for this job" onClick={openModal} />

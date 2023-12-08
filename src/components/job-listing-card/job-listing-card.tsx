@@ -31,7 +31,7 @@ export const JobListingCard = ({
                         <div className="flex flex-col">
                             <p className="p-0 text-lightText">{company.name}</p>
                             <p className="p-0 text-sm text-lightText">
-                                {postDate}
+                                {new Date(postDate).toDateString()}
                             </p>
                         </div>
                     </div>

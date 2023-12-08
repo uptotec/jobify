@@ -8,6 +8,7 @@ import { LoginPage } from "./pages/login-page/login-page";
 import { SignUpPage } from "./pages/sign-up-page/sign-up-page";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { PostJobPage } from "./pages/post-job-page/post-job-page";
 
 const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     {
         path: "/jobs",
         Component: FindAJobPage,
+    },
+    {
+        path: "/post-job",
+        Component: PostJobPage,
     },
     {
         path: "/job/:id",
