@@ -36,22 +36,6 @@ export const Pagination = ({ className }: PaginationProps) => {
                                 1
                             </a>
                         </li>
-                        <li aria-current="page">
-                            <a
-                                className="relative block rounded bg-transparent px-3 py-1.5 text-xl text-darkText transition-all duration-300 hover:bg-neutral-100"
-                                href="#"
-                            >
-                                2
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                className="relative block rounded bg-transparent px-3 py-1.5 text-xl text-darkText transition-all duration-300 hover:bg-neutral-100"
-                                href="#"
-                            >
-                                3
-                            </a>
-                        </li>
                         <li className="rounded-r-md bg-primary p-1">
                             <a
                                 className="relative block rounded bg-transparent px-3 py-1.5 text-xl text-primary transition-all duration-300 hover:bg-neutral-100"

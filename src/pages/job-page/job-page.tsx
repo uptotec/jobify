@@ -6,6 +6,8 @@ import { JobDetailsSection } from "../../components/job-details-section/job-deta
 import { JobDescriptionAndRequirements } from "../../components/job-description-and-requirements/job-description-and-requirements";
 import { Footer } from "../../components/footer/footer";
 import { AboutCompany } from "../../components/about-company/about-company";
+import { useParams } from "react-router-dom";
+import { fakeJobs } from "../../jobs";
 
 export interface JobPageProps {
     className?: string;
@@ -16,44 +18,31 @@ export interface JobPageProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 
-const content = [
-    "0 To 3 Years",
-    "Entry Level",
-    "Bachelor's Degree",
-    "6000 To 11000 EGP",
-    "Education",
-];
-
-const content1 = [
-    "0 To 3 Years",
-    "Entry Level",
-    "Bachelor's Degree",
-    "6000 To 11000 EGP",
-    "Education",
-];
-
 export const JobPage = ({ className }: JobPageProps) => {
+    const { id } = useParams();
+    const job = fakeJobs.find((job) => job.id === id);
+
     return (
         <div className="w-screen">
             <Header />
             <div className="flex gap-8 px-24 py-8">
                 <div className="flex w-3/4 flex-col gap-8">
-                    <JobTitleSection />
-                    <JobDetailsSection />
+                    <JobTitleSection job={job!} />
+                    <JobDetailsSection job={job!} />
                     <JobDescriptionAndRequirements
                         type="description"
-                        content={content}
+                        content={job!.Description}
                     />
                     <JobDescriptionAndRequirements
                         type="requirements"
-                        content={content1}
+                        content={job!.requirments}
                     />
                 </div>
                 <div className="w-1/4">
                     <AboutCompany
-                        name="BUE"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor commodo ullamcorper a lacus vestibulum sed arcu non odio. Lorem ipsum dolor sit amet."
-                        type="Educational Institute"
+                        name={job!.company.nameAbbreviation}
+                        description={job!.company.about}
+                        type={job!.field}
                     />
                 </div>
             </div>

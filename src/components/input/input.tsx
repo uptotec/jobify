@@ -10,13 +10,21 @@ export interface InputProps {
     className?: string;
     icon: string;
     placeholder?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    value?: string;
 }
 
 /**
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
-export const Input = ({ className, icon, placeholder }: InputProps) => {
+export const Input = ({
+    className,
+    icon,
+    placeholder,
+    onChange,
+    value,
+}: InputProps) => {
     const icons: { [key: string]: JSX.Element } = {
         search: <RiSearchLine size={24} color="#717171" />,
         location: <RiUserLocationLine size={24} color="#717171" />,
@@ -32,7 +40,15 @@ export const Input = ({ className, icon, placeholder }: InputProps) => {
                 <input
                     className="h-8 p-2 transition-all focus:border-b-2 focus:border-primary focus:outline-none"
                     placeholder={placeholder}
-                    type={icon === 'mail' ? "email" : icon === 'password'? "password" : "text"}
+                    onChange={onChange}
+                    value={value}
+                    type={
+                        icon === "mail"
+                            ? "email"
+                            : icon === "password"
+                              ? "password"
+                              : "text"
+                    }
                 />
             </div>
             <div />

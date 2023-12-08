@@ -3,6 +3,8 @@ import styles from "./job-search.module.scss";
 import { RiSearchLine } from "react-icons/ri";
 import { Input } from "../input/input";
 import { Button } from "../button/button";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export interface JobSearchProps {
     className?: string;
@@ -14,6 +16,39 @@ export interface JobSearchProps {
  */
 
 export const JobSearch = ({ className }: JobSearchProps) => {
+    const [location, setLocation] = useState("");
+    const [jobTitle, setJobTitle] = useState("");
+    const navigate = useNavigate();
+    let [searchParams] = useSearchParams();
+
+    const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setLocation(e.target.value);
+    };
+    const handleJobTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setJobTitle(e.target.value);
+    };
+
+    const field = searchParams.get("field");
+    const jobSearchTitle = searchParams.get("title");
+    const jobSearchLocation = searchParams.get("location");
+
+    useEffect(() => {
+        if (jobSearchTitle) {
+            setJobTitle(jobSearchTitle);
+        }
+        if (jobSearchLocation) {
+            setLocation(jobSearchLocation);
+        }
+    }, [jobSearchTitle, jobSearchLocation]);
+
+    const handleSearch = () => {
+        navigate(
+            `/jobs?${location ? `location=${location}` : ""}&${
+                jobTitle ? `title=${jobTitle}` : ""
+            } ${field ? `field=${field}` : ""}`,
+        );
+    };
+
     return (
         <div className={classNames(styles.root, className)}>
             <div
@@ -22,9 +57,18 @@ export const JobSearch = ({ className }: JobSearchProps) => {
                 data-aos-duration="1000"
                 data-aos-delay="300"
             >
-                <Input icon="search" placeholder="job title..." />|
-                <Input icon="location" placeholder="select location" />
-                <Button text="search" />
+                <Input
+                    icon="search"
+                    placeholder="job title..."
+                    onChange={handleJobTitleChange}
+                />
+                |
+                <Input
+                    icon="location"
+                    placeholder="select location"
+                    onChange={handleLocationChange}
+                />
+                <Button text="search" onClick={handleSearch} />
             </div>
         </div>
     );

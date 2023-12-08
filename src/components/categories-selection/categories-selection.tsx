@@ -1,5 +1,7 @@
 import classNames from "classnames";
 import styles from "./categories-selection.module.scss";
+import { fakeJobs } from "../../jobs";
+import { useSearchParams } from "react-router-dom";
 
 type categoriesListType = {
     id: number;
@@ -10,7 +12,6 @@ type categoriesListType = {
 
 export interface CategoriesSelectionProps {
     className?: string;
-    categoriesList: categoriesListType[];
 }
 
 /**
@@ -19,25 +20,45 @@ export interface CategoriesSelectionProps {
  */
 export const CategoriesSelection = ({
     className,
-    categoriesList,
 }: CategoriesSelectionProps) => {
+    const uniqueFieldsSet: Set<string> = new Set();
+
+    fakeJobs.forEach((job) => {
+        uniqueFieldsSet.add(job.field);
+    });
+
+    const fields = Array.from(uniqueFieldsSet);
+
+    fields.unshift("All");
+
+    let [searchParams, setSearchParams] = useSearchParams();
+
     return (
         <div className={classNames(styles.root, className)}>
-            <div className="flex gap-8">
-                {categoriesList.map((category, i) => (
+            <div
+                className="flex gap-8"
+                data-aos="fade-right"
+                data-aos-duration="1000"
+            >
+                {fields.map((category, i) => (
                     <button
-                        key={category.id}
-                        data-aos="fade-right"
-                        data-aos-duration="1000"
-                        data-aos-delay={`${i * 100 + 300}`}
+                        key={i}
+                        onClick={() => {
+                            searchParams.set("field", category);
+                            setSearchParams(searchParams);
+                        }}
+                        // data-aos="fade-right"
+                        // data-aos-duration="1000"
+                        // data-aos-delay={`${i * 100 + 300}`}
                         className={`flex items-center gap-2 rounded-md border-[1px] px-2 py-1 hover:border-primary hover:text-primary ${
-                            category.active
+                            searchParams.get("field") === category ||
+                            (searchParams.get("field") === null && i === 0)
                                 ? "border-primary text-primary"
                                 : "border-lightBorder text-lightText"
                         }`}
                     >
-                        <img src={category.image} alt="" className="w-8" />
-                        {category.name}
+                        {/* <img src={category.image} alt="" className="w-8" /> */}
+                        {category}
                     </button>
                 ))}
             </div>

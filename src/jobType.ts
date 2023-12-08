@@ -1,4 +1,5 @@
-type job = {
+export type job = {
+    id: string;
     jobTitle: string;
     time: string;
     openPositions: number;
@@ -22,4 +23,5 @@ type job = {
     Description: string[];
     requirments: string[];
     skillsAndTools: string[];
+    postDate: string;
 };

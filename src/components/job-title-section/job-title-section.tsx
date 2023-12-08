@@ -3,9 +3,11 @@ import styles from "./job-title-section.module.scss";
 import bueLogo from "../../assets/bue.png";
 import { Button } from "../button/button";
 import { RiShareFill } from "react-icons/ri";
+import { job } from "../../jobType";
 
 export interface JobTitleSectionProps {
     className?: string;
+    job: job;
 }
 
 /**
@@ -13,7 +15,7 @@ export interface JobTitleSectionProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 
-export const JobTitleSection = ({ className }: JobTitleSectionProps) => {
+export const JobTitleSection = ({ className, job }: JobTitleSectionProps) => {
     return (
         <div
             className="flex w-full flex-col gap-4 rounded-xl border-2 border-lightBorder px-8 py-4"
@@ -22,20 +24,18 @@ export const JobTitleSection = ({ className }: JobTitleSectionProps) => {
             data-aos-delay="300"
         >
             <div className="flex items-center justify-between gap-14">
-                <p className="text-2xl font-bold">
-                    Computer Engineering Phd Doctor
-                </p>
+                <p className="text-2xl font-bold">{job.jobTitle}</p>
                 <img src={bueLogo} alt="" className={"h-16"} />
             </div>
             <div className="flex w-fit rounded-md bg-background px-2 py-1">
-                <p className="text-sm font-light">FULL TIME</p>
+                <p className="text-sm font-light">{job.time}</p>
             </div>
             <p className="font-medium">
-                The British University in Egypt{" "}
-                <span className="text-lightText">- Cairo, Egypt</span>
+                {job.company.name}
+                <span className="text-lightText">- {job.details.Location}</span>
             </p>
-            <p className="text-lightText">Posted 3 days ago</p>
-            <p className="text-lightText">11 open positions</p>
+            <p className="text-lightText">{job.postDate}</p>
+            <p className="text-lightText">{job.openPositions} open positions</p>
             <div className="flex gap-4">
                 <Button text="Apply for this job" />
                 <button className="flex w-10 items-center justify-center rounded-md border-2 border-lightBorder">
