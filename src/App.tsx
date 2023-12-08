@@ -1,34 +1,24 @@
-import { useState } from 'react';
-import { ReactComponent as ReactLogo } from './assets/react.svg';
-import { ReactComponent as ViteLogo } from './assets/vite.svg';
-import { ReactComponent as TypescriptLogo } from './assets/typescript.svg';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { HomePage } from "./pages/home-page/home-page";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { FindAJobPage } from "./pages/find-a-job-page/find-a-job-page";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        Component: HomePage,
+    },
+    {
+        path: "/jobs",
+        Component: FindAJobPage,
+    },
+]);
 
 function App() {
-    const [count, setCount] = useState(0);
-
-    return (
-        <div className="flex h-screen w-screen flex-col items-center justify-center bg-gray-800 p-8">
-            <div className="flex">
-                <a href="https://vitejs.dev" target="_blank">
-                
-                    <ViteLogo className={'h-36 w-36 p-6'} title="Vite logo" />
-                </a>
-                <a href="https://reactjs.org" target="_blank" download={undefined}>
-                    <ReactLogo className={'h-36 w-36 p-6'} title="React logo" />
-                </a>
-                <a href="https://www.typescriptlang.org/" target="_blank">
-                    <TypescriptLogo className={'h-36 w-36 p-6'} title="Typescript logo" />
-                </a>
-            </div>
-            <div className={'p-8 text-gray-100'}>
-                <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className={'text-gray-200'}>Click on the Vite and React logos to learn more</p>
-        </div>
-    );
+    AOS.init();
+    window.addEventListener("load", AOS.refresh);
+    return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  color: #313132;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Set the scrollbar width and round the corners */
+::-webkit-scrollbar {
+  width: 8px; /* Adjust the width as needed */
+  border-radius: 10px; /* Adjust the border radius as needed */
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Change the background color as needed */
+}
+
+/* Style the scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background-color: #332dad; /* Set the handle color */
+  border-radius: 10px; /* Match the border radius of the scrollbar */
+}
+
+/* Change the appearance on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #28257c; /* Set the hover color */
+}
+
+body > div {
+  overflow-x: hidden;
+}
