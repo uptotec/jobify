@@ -40,7 +40,7 @@ export const Header = ({ className }: HeaderProps) => {
                     >
                         Home
                     </button>
-                    <a
+                    <button
                         onClick={() => navigate("/jobs")}
                         className={`${
                             currentPath === "/jobs" && "text-primary underline"
@@ -50,8 +50,8 @@ export const Header = ({ className }: HeaderProps) => {
                         data-aos-delay="300"
                     >
                         Find a job
-                    </a>
-                    <a
+                    </button>
+                    <button
                         onClick={() => navigate("/post-job")}
                         className={`${
                             currentPath === "/post-job" &&
@@ -62,7 +62,7 @@ export const Header = ({ className }: HeaderProps) => {
                         data-aos-delay="400"
                     >
                         Post a job
-                    </a>
+                    </button>
                 </div>
                 <div className={"flex items-center gap-4"}>
                     <button
